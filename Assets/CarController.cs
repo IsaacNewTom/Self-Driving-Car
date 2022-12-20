@@ -10,7 +10,9 @@ The script that controls the car!
 public class CarController : MonoBehaviour
 {
     /* The car's starting position and rotation */
-    private Vector3 StartPosition, StartRotation;
+    private Vector3 StartPosition, StartRotation, LastPosition;
+    private float TotalDistanceTraveled, AverageSpeed;
+    private float SensorA, SensorB, SensorC;
 
     [Range(-1f, 1f)]
     public float acceleration, tuning;
@@ -25,15 +27,6 @@ public class CarController : MonoBehaviour
     public float DistanceMultiplier = 1.4f;
     public float AverageSpeedMultiplier = 0.2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
