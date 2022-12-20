@@ -408,12 +408,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27da4e0fe1845d4a910a50d74971806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0
-  tuning: 0
+  Acceleration: 0.1
+  Tuning: 0
   TimeSinceStart: 0
   OverallFitness: 0
   DistanceMultiplier: 1.4
-  AverageSpeedMultiplier: 0.2
+  SpeedMultiplier: 0.2
+  SensorMultiplier: 0.1
+--- !u!1 &1531039670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4695666576454475813, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+  m_PrefabInstance: {fileID: 1987746716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1531039674
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531039670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
 --- !u!1001 &1987746716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,17 +509,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1066910053003865102, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1276603737757889232, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.858
+      value: -67.57
       objectReference: {fileID: 0}
     - target: {fileID: 1276603737757889232, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.133
+      value: 5.49
       objectReference: {fileID: 0}
     - target: {fileID: 1276603737757889232, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.789
+      value: 15.46
       objectReference: {fileID: 0}
     - target: {fileID: 1276603737757889232, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_LocalRotation.w
