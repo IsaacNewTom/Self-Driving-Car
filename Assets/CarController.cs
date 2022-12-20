@@ -59,28 +59,29 @@ public class CarController : MonoBehaviour
         Vector3 DirectionA = (transform.forward + transform.right);
         Vector3 DirectionB = (transform.forward);
         Vector3 DirectionC = (transform.forward - transform.right);
-        int NormalizationValue = 20;
+        int NormalizationValue = 15;
 
         Ray r = new Ray(transform.position, DirectionA);
         RaycastHit hit;
 
+
         /* Fire the ray as sensor A */
         if (Physics.Raycast(r, out hit)){
-            DirectionA = hit.distance / NormalizationValue;
+            SensorA = hit.distance / NormalizationValue;
             print("Sensor A: " + SensorA);
         }
 
         r.direction = DirectionB;
         /* Fire the ray as sensor B */
         if (Physics.Raycast(r, out hit)){
-            DirectionB = hit.distance / NormalizationValue;
+            SensorB = hit.distance / NormalizationValue;
             print("Sensor B: " + SensorB);
         }
 
         r.direction = DirectionC;
         /* Fire the ray as sensor C */
         if (Physics.Raycast(r, out hit)){
-            DirectionB = hit.distance / NormalizationValue;
+            SensorC = hit.distance / NormalizationValue;
             print("Sensor C: " + SensorC);
         }
     }
@@ -112,7 +113,7 @@ public class CarController : MonoBehaviour
         Input = transform.TransformDirection(Input);
 
         transform.position += Input;
-        transform.eulerAngles += new Vector3(0, HorizontalMovement * 90 * 0.0f, 0);
+        transform.eulerAngles += new Vector3(0, HorizontalMovement * 90 * 0.02f, 0);
     }
 
     /* Happens every frame */
