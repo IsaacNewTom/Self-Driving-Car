@@ -68,6 +68,7 @@ public class CarController : MonoBehaviour
         /* Fire the ray as sensor A */
         if (Physics.Raycast(r, out hit)){
             SensorA = hit.distance / NormalizationValue;
+            Debug.DrawLine(r.origin, hit.point, Color.red);
             print("Sensor A: " + SensorA);
         }
 
@@ -75,6 +76,7 @@ public class CarController : MonoBehaviour
         /* Fire the ray as sensor B */
         if (Physics.Raycast(r, out hit)){
             SensorB = hit.distance / NormalizationValue;
+            Debug.DrawLine(r.origin, hit.point, Color.red);
             print("Sensor B: " + SensorB);
         }
 
@@ -82,6 +84,7 @@ public class CarController : MonoBehaviour
         /* Fire the ray as sensor C */
         if (Physics.Raycast(r, out hit)){
             SensorC = hit.distance / NormalizationValue;
+            Debug.DrawLine(r.origin, hit.point, Color.red);
             print("Sensor C: " + SensorC);
         }
     }
