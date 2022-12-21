@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-The script that controls the car!
-*/
+[RequireComponent(typeof(NeuralNetwork))]
+
+
+/* The script that controls the car! */
 
 
 public class CarController : MonoBehaviour
@@ -12,11 +13,14 @@ public class CarController : MonoBehaviour
     /* The car's starting position and rotation */
     private Vector3 StartPosition, StartRotation, LastPosition, Input;
     private float TotalDistanceTraveled, AverageSpeed;
+
+    private NeuralNetwork Network;
+
     /* Sensors that go: diagonally right, forward, and diagonally left */
     private float SensorA, SensorB, SensorC;
 
     [Range(-1f, 1f)]
-    public float Acceleration, Tuning;
+    public float Acceleration, Turning;
 
     /* To check if the car hasn't moved in a long time, so we would have to reset it */
     public float TimeSinceStart = 0f;
@@ -32,14 +36,24 @@ public class CarController : MonoBehaviour
     /* How important it is to stay at the middle of the track */
     public float SensorMultiplier = 0.1f;
 
+    [Header("Network Options")]
+    public int HIDDEN_LAYERS = 1;
+    public int NEURONS = 10;
 
     public void Awake(){
         StartPosition = transform.position;
         StartRotation = transform.eulerAngles;
+        Network = GetComponent<NeuralNetwork>();
+
+        /* Testing */
+        Network.InitNetwork(HIDDEN_LAYERS, NEURONS);
     }
 
     /* Would be called whenever we want to reset the car */
     public void Reset(){
+
+        Network.InitNetwork(HIDDEN_LAYERS, NEURONS);
+
         TimeSinceStart = 0f;
         TotalDistanceTraveled = 0f;
         AverageSpeed = 0f;
@@ -124,9 +138,9 @@ public class CarController : MonoBehaviour
         InputSensors();
         LastPosition = transform.position;
 
-        /* TODO: NN code */
+        (Acceleration, Turning) = Network.RunNetwork(SensorA, SensorB, SensorC);
 
-        MoveCar(Acceleration, Tuning);
+        MoveCar(Acceleration, Turning);
         TimeSinceStart += Time.deltaTime;
 
         CalculateFitness();
