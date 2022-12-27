@@ -271,7 +271,7 @@ MonoBehaviour:
   SpeedMultiplier: 0.2
   SensorMultiplier: 0.1
   HIDDEN_LAYERS: 1
-  NEURONS: 10
+  NEURONS: 8
 --- !u!114 &1357477956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,12 +394,40 @@ PrefabInstance:
       value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: field of view
-      value: 60.000004
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_FocalLength
-      value: 15.588457
+      value: 14.403011
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7521214134985992077, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}
       propertyPath: m_Name

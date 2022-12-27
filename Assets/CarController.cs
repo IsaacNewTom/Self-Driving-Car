@@ -49,6 +49,11 @@ public class CarController : MonoBehaviour
         Network.InitNetwork(HIDDEN_LAYERS, NEURONS);
     }
 
+    /* Reset a car with a given network */
+    public void ResetWithNetwork(NeuralNetwork network){
+        Network = network;
+    }
+
     /* Would be called whenever we want to reset the car */
     public void Reset(){
 
