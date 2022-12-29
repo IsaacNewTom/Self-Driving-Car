@@ -9,6 +9,7 @@ public class GeneticController : MonoBehaviour
     public CarController Controller;
 
     [Header("Controls")]
+    /* Number of networks in our population */
     public int InitialPopulationCount = 85;
 
     [Range(0.0f, 1.0f)]
@@ -25,8 +26,9 @@ public class GeneticController : MonoBehaviour
     /* holds the networks that had been selected */
     private List<int> GenePool = new List<int>();
 
-    private int NaturallySelected;
+    private int NaturallySelectedCount;
 
+    /* The population is just an array of networks */
     private NeuralNetwork[] Population;
 
     [Header("Public View")]
@@ -35,16 +37,17 @@ public class GeneticController : MonoBehaviour
 
 
     /* Reset the current car with a specific network */
-    private void ResetToCurrentGenome(int ){
+    private void ResetToCurrentGenome(){
         Controller.ResetWithNetwork(Population[CurrentGenome]);
     }
 
     /* Randomize the networks in the population starting from the index to the end */
-    RandomizePopulationValues(NeuralNetwork[] NewPopulation, int StartingIndex){
+    private void RandomizePopulationValues(NeuralNetwork[] NewPopulation, int StartingIndex){
         while (StartingIndex < InitialPopulationCount)
-        {
+        {   
+            /* Iterate over the population from the starting index to the end and create a network */
             NewPopulation[StartingIndex] = new NeuralNetwork();
-            NewPopulation[StartingIndex].InitNetwork(Controller.LAYERS, Controller.Neurons);
+            NewPopulation[StartingIndex].InitNetwork(Controller.HIDDEN_LAYERS, Controller.NEURONS);
             StartingIndex++;
         }
     }
@@ -58,7 +61,20 @@ public class GeneticController : MonoBehaviour
     }
 
     public void Start(){
-        CreatePopulations();
+        CreatePopulation();
+    }
+
+    /* Called when a car dies */
+    public void Death(float fitness, NeuralNetwork network){
+        
+        if (CurrentGeneration < Population.Length - 1){
+            Population[CurrentGenome].Fitness = fitness;
+            CurrentGenome++;
+            ResetToCurrentGenome();
+        }
+        else{
+            //Repopulate the population
+        }
     }
 
 }

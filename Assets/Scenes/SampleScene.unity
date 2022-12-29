@@ -286,6 +286,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Biases: []
   Fitness: 0
+--- !u!114 &1357477958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357477951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8d91cf179685b4eb43d791b4db059e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 0}
+  InitialPopulationCount: 85
+  MutationRate: 0.055
+  BestAgentSelection: 8
+  WorstAgentSelection: 3
+  NumberToCrossover: 39
+  CurrentGeneration: 0
+  CurrentGenome: 0
 --- !u!1 &1531039670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4695666576454475813, guid: 315102d4aa63f4d4695f377e8fb7ca09, type: 3}

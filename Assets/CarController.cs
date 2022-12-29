@@ -46,12 +46,13 @@ public class CarController : MonoBehaviour
         Network = GetComponent<NeuralNetwork>();
 
         /* Testing */
-        Network.InitNetwork(HIDDEN_LAYERS, NEURONS);
+        // Network.InitNetwork(HIDDEN_LAYERS, NEURONS);
     }
 
     /* Reset a car with a given network */
     public void ResetWithNetwork(NeuralNetwork network){
         Network = network;
+        Reset();
     }
 
     /* Would be called whenever we want to reset the car */
@@ -70,7 +71,7 @@ public class CarController : MonoBehaviour
 
     /* Would be called whenever the car hit something */
     private void OnCollisionEnter(Collision collision){
-        Reset();
+        Death();
     }
 
     /* Gain the sensor's input */
@@ -118,13 +119,13 @@ public class CarController : MonoBehaviour
 
         /* if it's been 20 seconds and the fitness is low, reset */
         if (TimeSinceStart > 20 && OverallFitness < 40){
-            Reset();
+            Death();
         }
 
         /* the car has finished the track */
         if (OverallFitness >= 1000){
             /* TODO: Save network to JSON */
-            Reset();
+            Death();
         }
     }
 
@@ -149,5 +150,10 @@ public class CarController : MonoBehaviour
         TimeSinceStart += Time.deltaTime;
 
         CalculateFitness();
+    }
+
+    /* Call the genetic algorithm's death function */
+    private void Death(){
+        GameObject.FindObjectOfType<GeneticController>().Death(OverallFitness, Network);
     }
 }
