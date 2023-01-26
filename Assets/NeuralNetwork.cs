@@ -29,7 +29,7 @@ public class NeuralNetwork : MonoBehaviour
     }
 
     /* Generate random weight values between -1 and 1 */
-    public void RandomiseWeights(){
+    public void RandomizeWeights(){
         for (int i = 0; i < Weights.Count; i++){
             for (int x = 0; x < Weights[i].RowCount; x++){
                 for (int y = 0; y < Weights[i].ColumnCount; y++){
@@ -76,7 +76,7 @@ public class NeuralNetwork : MonoBehaviour
         Biases.Add(Random.Range(-1f, 1f));
 
         /* Randomise the weight values */
-        RandomiseWeights();
+        RandomizeWeights();
     }
 
     /* Runs the neural network */
@@ -100,5 +100,53 @@ public class NeuralNetwork : MonoBehaviour
         /* return the outputs - the acceleration can't be negative so it's passed to a sigmoid */
         /* We cast the second value to a float, since Math.Tanh returns a double */
         return (Sigmoid(OutputLayer[0, 0]), (float)Math.Tanh(OutputLayer[0, 1]));
+    }
+
+    
+    /* Creates the hidden layer of a given neural network (used for copying a network) */
+    public void CreateHiddenLayers(int HiddenLayerCount, int HiddenNeuronsCount){
+        InputLayer.Clear();
+        HiddenLayers.Clear();
+        OutputLayer.Clear();
+
+        for (int i = 0; i < HiddenLayerCount + 1; i++)
+        {
+            Matrix<float> NewHiddenLayer = Matrix<float>.Build.Dense(1, HiddenNeuronsCount);
+            HiddenLayers.Add(NewHiddenLayer);
+        }
+    }
+
+    /* Create a copy of the network, so it wouldn't just be a value and a reference */
+    public NeuralNetwork CopyAndInitNetwork(int HiddenLayerCount, int HiddenNeuronsCount){
+        NeuralNetwork NewNetwork = new NeuralNetwork();
+
+        
+        List<Matrix<float>> NewWeights = new List<Matrix<float>>();
+
+        for (int i = 0; i < this.Weights.Count; i++)
+        {
+            Matrix<float> CurrentWeight = Matrix<float>.Build.Dense(Weights[i].RowCount, Weights[i].ColumnCount);
+
+            for (int x = 0; x < CurrentWeight.RowCount; x++)
+            {
+                for (int y = 0; y < CurrentWeight.ColumnCount; y++)
+                {
+                    CurrentWeight[x, y] = Weights[i][x, y];
+                }
+            }
+
+            NewWeights.Add(CurrentWeight);
+        }
+
+        List<float> NewBiases = new List<float>();
+
+        NewBiases.AddRange(Biases);
+
+        NewNetwork.Weights = NewWeights;
+        NewNetwork.Biases = NewBiases;
+
+        NewNetwork.CreateHiddenLayers(HiddenLayerCount, HiddenNeuronsCount);
+
+        return NewNetwork;
     }
 }

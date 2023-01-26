@@ -5,9 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(NeuralNetwork))]
 
 
-/* The script that controls the car! */
-
-
+/* The script that controls the car */
 public class CarController : MonoBehaviour
 {
     /* The car's starting position and rotation */
@@ -124,7 +122,6 @@ public class CarController : MonoBehaviour
 
         /* the car has finished the track */
         if (OverallFitness >= 1000){
-            /* TODO: Save network to JSON */
             Death();
         }
     }
